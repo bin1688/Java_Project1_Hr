@@ -55,7 +55,7 @@ public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
         newList.sort(comparator);
         return newList;
     }
-    //jjjjjjjjjjjjjjjjjjjjj
+
     public String toString() {
         return ("The number of books in the store is: " + data.size() + "\nThe smallest books is: " + getMin() + "\nThe largest book is: " + getMax() +
             "\nThe original order of the list: " + getList());
