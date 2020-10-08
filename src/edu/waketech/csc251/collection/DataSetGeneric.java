@@ -50,6 +50,15 @@ public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
 //        return newList;
 //    }
 
+    public void getSingleElement(int num){
+        System.out.println(data.get(num));
+    }
+
+    public int getSize(){
+        return data.size();
+    }
+
+
     public List<E> sortBy(Comparator<? super E> comparator) {
         ArrayList<E> newList = new ArrayList<>(data);
         newList.sort(comparator);
@@ -57,7 +66,10 @@ public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
     }
 
     public String toString() {
-        return ("The number of books in the store is: " + data.size() + "\nThe smallest books is: " + getMin() + "\nThe largest book is: " + getMax() +
-            "\nThe original order of the list: " + getList());
+        String allEmployees = "";
+        for(int i = 0; i < data.size(); i++){
+            allEmployees += "[" + i + "] " + data.get(i) + "\n";
+        }
+        return allEmployees;
     }
 }
