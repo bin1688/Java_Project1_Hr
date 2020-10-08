@@ -50,9 +50,6 @@ public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
 //        return newList;
 //    }
 
-    public void getSingleElement(int num){
-        System.out.println(data.get(num));
-    }
 
     public int getSize(){
         return data.size();

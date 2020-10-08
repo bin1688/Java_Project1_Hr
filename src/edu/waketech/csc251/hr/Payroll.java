@@ -149,7 +149,6 @@ public class Payroll {
 		System.out.println(dataStore);
 		System.out.println("Press any key and enter to Continue:");
 		String nothing = kybd.next();
-
 	}
 
 	/**
