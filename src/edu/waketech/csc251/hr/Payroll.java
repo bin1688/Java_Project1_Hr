@@ -146,9 +146,7 @@ public class Payroll {
 	 * @param dataStore containing the employees to be displayed
 	 */
 	public static void displayEverybody(Scanner kybd, DataSetGeneric<Employee> dataStore) {
-		System.out.println(dataStore);
-		System.out.println("Press any key and enter to Continue:");
-		String nothing = kybd.next();
+		Utils.userDisplay(kybd, dataStore.getList());
 	}
 
 	/**

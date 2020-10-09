@@ -40,7 +40,7 @@ public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
         return mEle;
     }
 
-    public List<E> getList() {
+    public ArrayList<E> getList() {
         return data;
     }
 
