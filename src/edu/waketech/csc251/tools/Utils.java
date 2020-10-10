@@ -114,8 +114,13 @@ public class Utils {
     *           an ArrayList of information to be displayed
     */
    public static <E> void userDisplay(Scanner kybd, ArrayList<E> info) {
-      for (int i = 0; i < info.size(); i++) {
-         System.out.println("\t[" + i + "] " + info.get(i));
+      if(info.get(0) == null){
+         System.out.println("No information");
+      }
+      else {
+         for (int i = 0; i < info.size(); i++) {
+            System.out.println("\t[" + i + "] " + info.get(i));
+         }
       }
       System.out.println("Press any key and enter to Continue: ");
       kybd.next();

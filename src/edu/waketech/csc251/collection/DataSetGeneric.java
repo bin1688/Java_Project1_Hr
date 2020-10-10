@@ -18,8 +18,10 @@ public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
     }
 
     public ArrayList<E> getMax() {
+        ArrayList<E> maxObj = new ArrayList<>();
         if (data.isEmpty()) {
-            return null;
+            maxObj.add(null);
+            return maxObj;
         }
         E mEle = data.get(0);
         for (int i = 1; i < data.size(); i++) {
@@ -27,7 +29,7 @@ public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
                 mEle = data.get(i);
             }
         }
-        ArrayList<E> maxObj = new ArrayList<>();
+
         maxObj.add(mEle);
         return maxObj;
     }
