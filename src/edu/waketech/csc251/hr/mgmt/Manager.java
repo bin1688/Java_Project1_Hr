@@ -18,6 +18,7 @@ public class Manager extends Employee {
 		this.department = department;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Manager [department=" + department + ", toString()=" + super.toString() + "]";

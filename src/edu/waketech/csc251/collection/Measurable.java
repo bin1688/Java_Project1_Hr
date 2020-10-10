@@ -6,8 +6,11 @@ package edu.waketech.csc251.collection;
  * @author parks
  *
  */
-public interface Measurable {
+public interface Measurable{
 	
-	int getMeasure();
+//	int getMeasure();
 
+	String getName();
+
+	double getSalary();
 }

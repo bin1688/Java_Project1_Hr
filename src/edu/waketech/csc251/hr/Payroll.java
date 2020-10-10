@@ -1,6 +1,7 @@
 package edu.waketech.csc251.hr;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -76,6 +77,7 @@ public class Payroll {
 	 * @param dataStore DataSetGeneric to provide sorted Employees
 	 */
 	private static void displaySortedByName(Scanner kybd, DataSetGeneric<Employee> dataStore) {
+		Utils.userDisplay(kybd, dataStore.sortByName());
 	}
 
 	/**
@@ -85,6 +87,8 @@ public class Payroll {
 	 * @param dataStore provides the sorted list of Employees
 	 */
 	private static void displaySortedBySalary(Scanner kybd, DataSetGeneric<Employee> dataStore) {
+
+		Utils.userDisplay(kybd, dataStore.sortBySalary());
 	}
 
 	/**
@@ -147,6 +151,7 @@ public class Payroll {
 	 */
 	public static void displayEverybody(Scanner kybd, DataSetGeneric<Employee> dataStore) {
 		Utils.userDisplay(kybd, dataStore.getList());
+
 	}
 
 	/**
@@ -157,6 +162,8 @@ public class Payroll {
 	 * @param dataStore containing the employees to be displayed
 	 */
 	public static void displayHighestSalary(Scanner kybd, DataSetGeneric<Employee> dataStore) {
+		Utils.userDisplay(kybd, dataStore.getMax());
+
 	}
 
 	/**
@@ -167,6 +174,9 @@ public class Payroll {
 	 * @param dataStore containing the employees to be displayed
 	 */
 	public static void displayOnlyEmployees(Scanner kybd, DataSetGeneric<Employee> dataStore) {
+		EmployeeOnlyScreen empOnly = new EmployeeOnlyScreen();
+		ArrayList<Employee> empOnlyList = dataStore.getList(empOnly);
+		Utils.userDisplay(kybd, empOnlyList);
 	}
 
 	/**
@@ -177,6 +187,9 @@ public class Payroll {
 	 * @param dataStore containing the employees to be displayed
 	 */
 	public static void displayOnlyExecutives(Scanner kybd, DataSetGeneric<Employee> dataStore) {
+		ExecutiveScreen executiveOnly = new ExecutiveScreen();
+		ArrayList<Employee> executiveOnlyList = dataStore.getList(executiveOnly);
+		Utils.userDisplay(kybd, executiveOnlyList);
 	}
 
 	/**
@@ -187,6 +200,9 @@ public class Payroll {
 	 * @param dataStore containing the employees to be displayed
 	 */
 	public static void displayOnlyManagers(Scanner kybd, DataSetGeneric<Employee> dataStore) {
+		ManagerOnlyScreen managerOnly = new ManagerOnlyScreen();
+		ArrayList<Employee> managerOnlyList = dataStore.getList(managerOnly);
+		Utils.userDisplay(kybd, managerOnlyList);
 	}
 
 	/**
@@ -197,5 +213,6 @@ public class Payroll {
 	 * @param dataStore containing the employees
 	 */
 	public static void generatePayroll(Scanner kybd, DataSetGeneric<Employee> dataStore) {
+		Utils.userDisplay(kybd, dataStore.generatePay());
 	}
 }

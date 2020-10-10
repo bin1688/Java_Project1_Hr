@@ -1,6 +1,9 @@
 package edu.waketech.csc251.hr.mgmt;
 
-public class Executive extends Manager {
+import edu.waketech.csc251.collection.Measurable;
+import edu.waketech.csc251.hr.person.Employee;
+
+public class Executive extends Manager{
 	
 	private double bonus;
 
@@ -8,7 +11,8 @@ public class Executive extends Manager {
 		super(name, salary, department);
 		this.bonus = bonus;
 	}
-	
+
+	@Override
 	public double getSalary() {
 		return super.getSalary() + (super.getSalary() * bonus);
 	}
@@ -20,6 +24,7 @@ public class Executive extends Manager {
 	public void setBonus(double bonus) {
 		this.bonus = bonus;
 	}
+
 
 	@Override
 	public String toString() {

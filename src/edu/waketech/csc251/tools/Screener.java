@@ -1,5 +1,7 @@
 package edu.waketech.csc251.tools;
 
-public class Screener {
+public interface Screener<Employee> {
+
+    boolean isEquals(Employee e);
 }
 

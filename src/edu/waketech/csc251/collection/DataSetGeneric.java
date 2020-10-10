@@ -1,5 +1,8 @@
 package edu.waketech.csc251.collection;
 
+import edu.waketech.csc251.hr.person.Employee;
+import edu.waketech.csc251.tools.Screener;
+
 import java.util.*;
 
 public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
@@ -14,53 +17,63 @@ public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
         return true;
     }
 
-    public E getMin() {
+    public ArrayList<E> getMax() {
         if (data.isEmpty()) {
             return null;
         }
         E mEle = data.get(0);
         for (int i = 1; i < data.size(); i++) {
-            if (mEle.getMeasure() > (data.get(i).getMeasure())) {
+            if (mEle.getSalary() < (data.get(i).getSalary())) {
                 mEle = data.get(i);
             }
         }
-        return mEle;
-    }
-
-    public E getMax() {
-        if (data.isEmpty()) {
-            return null;
-        }
-        E mEle = data.get(0);
-        for (int i = 1; i < data.size(); i++) {
-            if (mEle.getMeasure() < (data.get(i).getMeasure())) {
-                mEle = data.get(i);
-            }
-        }
-        return mEle;
+        ArrayList<E> maxObj = new ArrayList<>();
+        maxObj.add(mEle);
+        return maxObj;
     }
 
     public ArrayList<E> getList() {
         return data;
     }
 
-//    public List<E> sortBy(Comparator<? super E> comparator) {
-//        ArrayList<E> newList = (ArrayList<E>) data.clone();
-//        Collections.sort(newList, comparator);
-//        return newList;
-//    }
-
+    public ArrayList<E> getList(Screener<E> screener){
+        ArrayList<E> objList = new ArrayList<>();
+        for (E element : data) {
+            if (screener.isEquals(element)) {
+                objList.add(element);
+            }
+        }
+        return objList;
+    }
 
     public int getSize(){
         return data.size();
     }
 
 
-    public List<E> sortBy(Comparator<? super E> comparator) {
+    public ArrayList<E> sortByName() {
         ArrayList<E> newList = new ArrayList<>(data);
-        newList.sort(comparator);
+        Comparator<E> compareName = (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName());
+        newList.sort(compareName);
         return newList;
     }
+
+    public ArrayList<E> sortBySalary(){
+        ArrayList<E> newList = new ArrayList<>(data);
+        Comparator<E> compareSalary = (o1, o2) -> Double.compare(o2.getSalary(), o1.getSalary());
+        newList.sort(compareSalary);
+        return newList;
+    }
+
+
+    public ArrayList<String> generatePay(){
+        ArrayList<String> payroll = new ArrayList<>();
+        for (E element : data) {
+            payroll.add("Pay " + element.getName() + " $ " + element.getSalary());
+        }
+        return payroll;
+    }
+
 
     public String toString() {
         String allEmployees = "";

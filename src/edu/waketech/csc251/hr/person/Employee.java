@@ -2,6 +2,7 @@ package edu.waketech.csc251.hr.person;
 
 import edu.waketech.csc251.collection.Measurable;
 
+
 public class Employee implements Measurable {
 	
 	private String name;
@@ -20,6 +21,7 @@ public class Employee implements Measurable {
 		this.name = name;
 	}
 
+	@Override
 	public double getSalary() {
 		return salary;
 	}
@@ -32,10 +34,5 @@ public class Employee implements Measurable {
 	public String toString() {
 		return "Employee [name=" + name + ", salary=" + salary + "]";
 	}
-
-   @Override
-   public int getMeasure() {
-      return (int) (getSalary() * 100);
-   }
 
 }
