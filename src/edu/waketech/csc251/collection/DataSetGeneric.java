@@ -1,6 +1,5 @@
 package edu.waketech.csc251.collection;
 
-import edu.waketech.csc251.hr.person.Employee;
 import edu.waketech.csc251.tools.Screener;
 
 import java.util.*;
@@ -29,7 +28,6 @@ public class DataSetGeneric <E extends Measurable> extends ArrayList<E> {
                 mEle = data.get(i);
             }
         }
-
         maxObj.add(mEle);
         return maxObj;
     }

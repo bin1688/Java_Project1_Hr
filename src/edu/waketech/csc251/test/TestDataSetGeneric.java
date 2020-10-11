@@ -13,13 +13,13 @@ import java.util.Comparator;
 
 
 public class TestDataSetGeneric {
+    // create three static objects
     static final Employee employee = new Employee("Jack", 45000);
     static final Employee manager = new Manager("Bob", 55000, "HR");
     static final Employee executive = new Executive("Eric", 85000, "Marketing", 0.5);
 
-    static DataSetGeneric<Employee> dataStore = new DataSetGeneric<>();
-
-    public static ArrayList<Employee> getTestList(){
+    // create a expected list for testing
+    public static ArrayList<Employee> getExpectedList(){
         ArrayList<Employee> testList = new ArrayList<>();
         testList.add(employee);
         testList.add(manager);
@@ -27,69 +27,88 @@ public class TestDataSetGeneric {
         return testList;
     }
 
-    public static void addElementToDatastore(){
+    // create a data store for every time when a @Test method needs to test DataSetGeneric class
+    public static DataSetGeneric<Employee> dataStore(){
+        DataSetGeneric<Employee> dataStore = new DataSetGeneric<>();
         dataStore.add(employee);
         dataStore.add(manager);
         dataStore.add(executive);
+        return dataStore;
     }
 
+
+    // test getMax method in the DataSetGeneric class
     @Test
     public void testGetMax(){
+        // assign DataSetGeneric object to a variable by calling the dataStore method
+        DataSetGeneric<Employee> dataStore = dataStore();
+        // create a list with an expected element for comparison
         ArrayList<Employee> getMax = new ArrayList<>();
         getMax.add(executive);
-        assertEquals(dataStore.getMax(), getMax);
+        assertEquals(getMax, dataStore.getMax());
+
     }
 
+    // test getList method in the DataSetGeneric class
     @Test
     public void testGetList(){
-        assertEquals(dataStore.getList(), getTestList());
+        DataSetGeneric<Employee> dataStore = dataStore();
+        // assign expected list to a variable by calling the getExpectedList method
+        ArrayList<Employee> getTestList = new ArrayList<>(getExpectedList());
+        assertEquals(getTestList, dataStore.getList());
     }
 
+    // test getSize method in the DataSetGeneric class
     @Test
     public void testGetSize(){
-        addElementToDatastore();
-        assertEquals(dataStore.getSize(), 3);
+        DataSetGeneric<Employee> dataStore = dataStore();
+        assertEquals(3, dataStore.getSize());
     }
 
+    // test sortByName method in the DataSetGeneric class
     @Test
     public void testSortByName(){
-        addElementToDatastore();
+        DataSetGeneric<Employee> dataStore = dataStore();
         Comparator<Employee> comparator = ((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
-        ArrayList<Employee> getTestList = new ArrayList<>(getTestList());
+        ArrayList<Employee> getTestList = new ArrayList<>(getExpectedList());
         getTestList.sort(comparator);
-        assertEquals(dataStore.sortByName(), getTestList);
+        assertEquals(getTestList, dataStore.sortByName());
     }
 
+    // test sortBySalary method in the DataSetGeneric class
     @Test
     public void testSortBySalary(){
-        addElementToDatastore();
+        DataSetGeneric<Employee> dataStore = dataStore();
         Comparator<Employee> comparator = (o1, o2) -> Double.compare(o2.getSalary(), o1.getSalary());
-        ArrayList<Employee> getTestList = new ArrayList<>(getTestList());
+        ArrayList<Employee> getTestList = new ArrayList<>(getExpectedList());
         getTestList.sort(comparator);
-        assertEquals(dataStore.sortBySalary(), getTestList);
+        assertEquals(getTestList, dataStore.sortBySalary());
     }
 
+    // test generatePay method in the DataSetGeneric class
     @Test
     public void testGeneratePay(){
-        addElementToDatastore();
+        DataSetGeneric<Employee> dataStore = dataStore();
         ArrayList<String> payroll = new ArrayList<>();
         payroll.add("Pay Jack $ 45000.0");
         payroll.add("Pay Bob $ 55000.0");
         payroll.add("Pay Eric $ 127500.0");
-        assertEquals(dataStore.generatePay(), payroll);
+        assertEquals(payroll, dataStore.generatePay() );
     }
 
+    // test toString method in the DataSetGeneric class
     @Test
     public void testToString(){
-        addElementToDatastore();
-        ArrayList<Employee> getTestList = new ArrayList<>(getTestList());
+        DataSetGeneric<Employee> dataStore = dataStore();
+        ArrayList<Employee> expectedList = new ArrayList<>(getExpectedList());
+        // use for-loop to add each element to a string from the expectedList as strings
+        // this is the same method used in the DataSetGeneric class
         String allEmployees = "";
-        for(int i = 0; i < getTestList.size(); i++){
-            allEmployees += "[" + i + "] " + getTestList.get(i) + "\n";
+        for(int i = 0; i < expectedList.size(); i++){
+            allEmployees += "[" + i + "] " + expectedList.get(i) + "\n";
         }
-        assertEquals(dataStore.toString(), allEmployees);
+        assertEquals(allEmployees, dataStore.toString());
     }
-
 }
 
 
