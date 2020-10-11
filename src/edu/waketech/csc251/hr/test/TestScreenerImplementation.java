@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class TestScreenerRelated {
+public class TestScreenerImplementation {
     // create three testing methods
     static final Employee employee = new Employee("Jack", 45000);
     static final Employee manager = new Manager("Bob", 55000, "HR");
@@ -81,44 +81,4 @@ public class TestScreenerRelated {
         ExecutiveScreen executiveScreen = new ExecutiveScreen();
         assertFalse(executiveScreen.isEquals(manager));
     }
-
-    // create a data store for every time when a @Test method needs to test DataSetGeneric class
-    public static DataSetGeneric<Employee> dataStore(){
-        DataSetGeneric<Employee> dataStore = new DataSetGeneric<>();
-        dataStore.add(employee);
-        dataStore.add(manager);
-        dataStore.add(executive);
-        return dataStore;
-    }
-
-    // test a returned list with only Employee type
-    @Test
-    public void testEmployeeOnlyOutputList(){
-        DataSetGeneric<Employee> dataStore = dataStore();
-        EmployeeOnlyScreen employeeOnlyScreen = new EmployeeOnlyScreen();
-        ArrayList<Employee> expectedList = new ArrayList<>();
-        expectedList.add(employee);
-        assertEquals(expectedList, dataStore.getList(employeeOnlyScreen));
-    }
-
-    // test a returned list with only Manager type
-    @Test
-    public void testManagerOnlyOutputList(){
-        DataSetGeneric<Employee> dataStore = dataStore();
-        ManagerOnlyScreen managerOnlyScreen = new ManagerOnlyScreen();
-        ArrayList<Employee> expectedList = new ArrayList<>();
-        expectedList.add(manager);
-        assertEquals(expectedList, dataStore.getList(managerOnlyScreen));
-    }
-
-    // test a returned list with only Executive type
-    @Test
-    public void testExecutiveOnlyOutputList(){
-        DataSetGeneric<Employee> dataStore = dataStore();
-        ExecutiveScreen executiveScreen = new ExecutiveScreen();
-        ArrayList<Employee> expectedList = new ArrayList<>();
-        expectedList.add(executive);
-        assertEquals(expectedList, dataStore.getList(executiveScreen));
-    }
-
 }
